@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast - Real-time Weather Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 3D Animation Canvas -->
+    <canvas id="three-canvas"></canvas>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">
+                <span class="weather-icon">⛅</span>
+                Weather Forecast
+            </h1>
+            <p class="subtitle">Real-time weather data for cities worldwide</p>
+        </header>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="city-search" 
+                    class="search-input" 
+                    placeholder="Search for a city..."
+                    autocomplete="off"
+                >
+                <button id="search-btn" class="search-btn">Search</button>
+            </div>
+            <div id="search-results" class="search-results"></div>
+        </section>
+
+        <!-- Current Weather Section -->
+        <section class="current-weather" id="current-weather">
+            <div class="weather-card glass">
+                <div class="weather-main">
+                    <div class="weather-info">
+                        <h2 class="city-name" id="city-name">Loading...</h2>
+                        <p class="weather-description" id="weather-description"></p>
+                        <div class="temperature-display">
+                            <span class="temperature" id="temperature">--</span>
+                            <span class="temp-unit">°C</span>
+                        </div>
+                        <p class="feels-like" id="feels-like">Feels like --°C</p>
+                    </div>
+                    <div class="weather-icon-display">
+                        <img id="weather-icon" src="" alt="Weather icon" class="weather-icon-img">
+                    </div>
+                </div>
+                
+                <div class="weather-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">💧</span>
+                        <div class="detail-info">
+                            <p class="detail-label">Humidity</p>
+                            <p class="detail-value" id="humidity">--%</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">💨</span>
+                        <div class="detail-info">
+                            <p class="detail-label">Wind Speed</p>
+                            <p class="detail-value" id="wind-speed">-- m/s</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🌡️</span>
+                        <div class="detail-info">
+                            <p class="detail-label">Pressure</p>
+                            <p class="detail-value" id="pressure">-- hPa</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">☁️</span>
+                        <div class="detail-info">
+                            <p class="detail-label">Cloudiness</p>
+                            <p class="detail-value" id="clouds">--%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10-Day Forecast Section -->
+        <section class="forecast-section">
+            <h2 class="section-title">10-Day Forecast</h2>
+            <div class="forecast-grid" id="forecast-grid">
+                <!-- Forecast cards will be inserted here -->
+            </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="charts-section">
+            <h2 class="section-title">Weather Analytics</h2>
+            
+            <div class="charts-grid">
+                <div class="chart-container glass">
+                    <h3 class="chart-title">Temperature Trend</h3>
+                    <canvas id="temperature-chart"></canvas>
+                </div>
+                
+                <div class="chart-container glass">
+                    <h3 class="chart-title">Precipitation Probability</h3>
+                    <canvas id="precipitation-chart"></canvas>
+                </div>
+                
+                <div class="chart-container glass">
+                    <h3 class="chart-title">Humidity & Wind</h3>
+                    <canvas id="humidity-wind-chart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay">
+            <div class="loader"></div>
+            <p>Loading weather data...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="{{ url_for('static', filename='js/three-animation.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
